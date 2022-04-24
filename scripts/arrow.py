@@ -15,7 +15,7 @@ class Arrow:
         """
         Create a new instance of the arrow sprite
         """
-        _arrow_sprite = pg.image.load("scripts/Arrow Sprite.png")
+        _arrow_sprite = pg.image.load("assets/arrow_sprite.png")
 
 
     def rotate(self,angle):
