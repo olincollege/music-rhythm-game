@@ -1,4 +1,4 @@
-def score(y_position, arrow_type):
+def score_calc(y_position, arrow_type):
     """
     Function to determine the score a player recieves after they stop the arrow
     from moving
@@ -21,7 +21,6 @@ def score(y_position, arrow_type):
         ARROW_POSITION = 20
 
     diff = abs(ARROW_POSITION - y_position)
-
     score = 0
 
     if diff == 0:
@@ -40,9 +39,10 @@ def score(y_position, arrow_type):
         score += .4
     elif diff > 60 and diff <= 70:
         score += .3
-    elif diff < 70 and diff <= 80:
+    elif diff > 70 and diff <= 80:
         score += .2
-    elif diff < 80 and diff <= 90:
+    elif diff > 80 and diff <= 90:
         score += .1
 
     return score
+
