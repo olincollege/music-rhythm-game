@@ -2,8 +2,9 @@
 Class for the arrow sprite
 """
 import pygame as pg
+import random
 
-class Arrow:
+class Arrow(pg.sprite.Sprite):
     """
     Arrow Sprite with basic rotation functionality
 
@@ -11,22 +12,31 @@ class Arrow:
         -_arrow_sprite: An image of the arrow sprite
     """
     
-    def __init__(self):
+    def __init__(self, angle, x, y):
         """
-        Create a new instance of the arrow sprite
+        Create a new instance of the arrow sprite that is scaled and rotated.
         """
-        _arrow_sprite = pg.image.load("assets/arrow_sprite.png")
+        self._surface = pg.image.load("/home/mtong1/music-rhythm-game/assets/imgs/arrow_sprite.png").convert_alpha()
+        self._surface = pg.transform.smoothscale(self._surface, (100, 100))
+        self._surface = pg.transform.rotate(self._surface, angle)
+        self._rect = self._surface.get_rect(topleft = (x, y))
+        self._x = x
+        self._y = y
 
 
-    def rotate(self,angle):
-        """
-        Rotates the arrow sprite
 
-        Arguments:
-            -Angle: an integer representing how much you want to rotate the 
-                    arrow
+    def display_arrow(self, screen):
+        """
+        Displays the arrow on top of the screen.
+        """
+        screen.blit(self._surface, (self._x, self._y))
+
+
+
+
+    def update(self):
+        """
+        Changes the arrow's y position. When run in the game loop, the arrow will move up the screen by 2 pixels.
+        """
+        self._y -= 2
         
-        Returns:
-            -None
-        """
-        self._arrow_sprite = pg.transform.rotate(self._arrow_sprite, angle)
