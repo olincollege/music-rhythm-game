@@ -2,7 +2,9 @@ import pygame
 
 WIDTH, HEIGHT = 1280, 720
 
-
+"""
+Below are the scene classes for musical and visual transitions in the game
+"""
 class Scene:
     def start(self):
         pass
@@ -107,10 +109,21 @@ class Game(Scene):
             return self.scenes['menu']
 
 
-        # self.screen.blit(self.font.render("Game", True, 'white'), (WIDTH / 15, 290))
+        self.screen.blit(self.font.render("Game", True, 'white'), (WIDTH / 15, 290))
         return self
 
     def exit(self):
         self.channel.stop()
 
 
+"""
+Helper functions
+"""
+
+    # All the scenes.
+def initialize_scenes():
+    scenes = {}
+    scenes['menu'] = Menu(screen, scenes)
+    scenes['tutorial'] = Tutorial(screen, scenes)
+    scenes['transition'] = Transition(screen,scenes)
+    scenes['game'] = Game(screen, scenes)

@@ -3,57 +3,48 @@ catJAM, a rhythm-based music game!
 """
 
 import pygame 
-import time
-
-base_beat = "../assets/soundtrack/base beat.wav"
-transition_music = "../assets/soundtrack/transition music.wav"
-demo_4_melodies = "../assets/soundtrack/demo 4 melodies.wav"
-
-
-_songs = [base_beat,transition_music,demo_4_melodies]
-
-def play_next_song():
-    global _songs
-    _songs = _songs[1:] + [_songs[0]] # move current song to the back of the list 
-    pygame.mixer.music.load(_songs[0])
-    pygame.mixer.music.play()
+from sample_game import *
 
 def main():
+    timer = 0 
     pygame.init()
-    clock = pygame.time.Clock()
-    screen = pygame.display.set_mode([1280,720])       
-    running = True
-    # MUSIC
-    if pygame.mixer and not pygame.mixer.get_init():
-        print("Warning, no sound")
-        pygame.mixer = None
-    
-    
-    # creating sep channels for layering music
-    # ch1 = pygame.mixer.Channel(0)
-    # ch2 = pygame.mixer.Channel(1)
+    screen = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
+    clock  = pygame.time.Clock()
 
-    
-    play_next_song()
+    # All the scenes.
+    scenes = {}
+    scenes['menu'] = Menu(screen, scenes)
+    scenes['tutorial'] = Tutorial(screen, scenes)
+    scenes['transition'] = Transition(screen,scenes)
+    scenes['game'] = Game(screen, scenes)
 
-    main_game = True
-    # GAME
-    screen.fill((255, 255, 255))
+    # Start with the menu.
+    scene = scenes['menu']
+    scene.start()
     
-    while main_game is True:
-    # Form screen        
-        for event in pygame.event.get():
+    
+    while True:
+        dt = clock.tick(60)/1000
+        timer = timer + dt
+        # print(timer)
+        # print("tick " + str(pygame.time.get_ticks()))
+        events = pygame.event.get()
+        for event in events:
             if event.type == pygame.QUIT:
-                running = False
-                music = False
+                return
 
+        # Switch scenes if there is a new scene.
+        new_scene = scene.update(events, dt)
         
+        if new_scene is not scene:
+            # If there is a new scene, make sure to allow the old
+            # scene to exit and the new scene to start.
+            scene.exit()
+            scene = new_scene
+            scene.start()
 
-        clock.tick(40)
-
-        
-
-    pygame.quit()
+        pygame.display.update()
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()
