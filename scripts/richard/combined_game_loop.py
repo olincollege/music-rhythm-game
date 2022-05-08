@@ -5,6 +5,8 @@ import random
 import pygame 
 
 pg.init()
+pygame.mixer.init()
+
 timer = 0 
 showarrows = True
 WIDTH, HEIGHT = 1280, 720
@@ -25,7 +27,7 @@ class Menu(Scene):
         self.scenes  = scenes
         self.screen  = screen
         self.font    = pygame.font.SysFont('freesansbold.ttf', 32)
-        self.music   = pygame.mixer.Sound("../assets/soundtrack/base beat.wav")
+        self.music   = pygame.mixer.Sound("assets/soundtrack/base beat.wav")
         self.channel = pygame.mixer.Channel(0)
 
     def start(self):

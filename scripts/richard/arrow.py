@@ -16,7 +16,7 @@ class Arrow(pg.sprite.Sprite):
         """
         Create a new instance of the arrow sprite that is scaled and rotated.
         """
-        self._surface = pg.image.load("../assets/imgs/arrow_sprite.png").convert_alpha()
+        self._surface = pg.image.load("assets/imgs/arrow_sprite.png").convert_alpha()
         self._surface = pg.transform.smoothscale(self._surface, (100, 100))
         self._surface = pg.transform.rotate(self._surface, angle)
         self._rect = self._surface.get_rect(topleft = (x, y))
