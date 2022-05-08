@@ -119,11 +119,3 @@ class Game(Scene):
 """
 Helper functions
 """
-
-    # All the scenes.
-def initialize_scenes():
-    scenes = {}
-    scenes['menu'] = Menu(screen, scenes)
-    scenes['tutorial'] = Tutorial(screen, scenes)
-    scenes['transition'] = Transition(screen,scenes)
-    scenes['game'] = Game(screen, scenes)
