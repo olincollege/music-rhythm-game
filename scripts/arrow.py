@@ -2,7 +2,6 @@
 Class for the arrow sprite
 """
 import pygame as pg
-import random
 
 class Arrow(pg.sprite.Sprite):
     """
