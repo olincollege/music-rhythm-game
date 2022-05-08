@@ -92,7 +92,7 @@ class Game(Scene):
         self.guitar_cat.display(self.screen)
         self.drum_cat_2.display(self.screen)
         self.piano_cat_2.display(self.screen)
-        self.backgroundguitar_cat_2.display(self.screen)
+        #self.backgroundguitar_cat_2.display(self.screen)
 
         #print("playing" + str(game_timer))
         pass
