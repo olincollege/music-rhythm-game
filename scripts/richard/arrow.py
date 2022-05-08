@@ -16,13 +16,12 @@ class Arrow(pg.sprite.Sprite):
         """
         Create a new instance of the arrow sprite that is scaled and rotated.
         """
-        self._surface = pg.image.load("../assets/imgs/arrow_sprite.png").convert_alpha()
+        self._surface = pg.image.load("assets/imgs/arrow_sprite.png").convert_alpha()
         self._surface = pg.transform.smoothscale(self._surface, (100, 100))
         self._surface = pg.transform.rotate(self._surface, angle)
         self._rect = self._surface.get_rect(topleft = (x, y))
         self._x = x
         self._y = y
-
 
 
     def display_arrow(self, screen):
@@ -31,12 +30,9 @@ class Arrow(pg.sprite.Sprite):
         """
         screen.blit(self._surface, (self._x, self._y))
 
-
-
-
     def update(self):
         """
         Changes the arrow's y position. When run in the game loop, the arrow will move up the screen by 2 pixels.
         """
-        self._y -= 2
+        self._y -= 10
         
