@@ -131,8 +131,7 @@ class Exit():
         Args:
             events (list): a list of all of the events that have occured in one
                            cycle of the game loop
-            dt (int): the amount of time that has passed since the last cycle of
-                      the game loop
+            total_score (int): the int corresponding to the total score of the player
 
         Returns:
             self.scenes['game']: the Game class, the next scene, if the space

@@ -4,6 +4,7 @@ File for catJAM game controller
 import random
 import pygame as pg
 from finalmodel import *
+from finalview import *
 
 # Disabled pylint warnings that would break our code if we fixed
 # pylint: disable=invalid-name

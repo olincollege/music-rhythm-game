@@ -7,10 +7,13 @@ game_timer = 0
 showarrows = True
 WIDTH, HEIGHT = 1280, 720
 BPM = 100  # tempo of the song
+
+# Add in a delay for the arrows to error correct
+# Changes based on arrow speed.
 # DELAY = 3.59
 # DELAY = 3.74
-# DELAY = 3.44 # Changes based on arrow speed.
-DELAY = 3
+DELAY = 3.22 
+# DELAY = 3
 
 # screen size
 size = (WIDTH, HEIGHT)
@@ -81,15 +84,15 @@ right_arrows = []
 down_arrows = []
 
 song_information = [1, 1, 1, 1, 4,
-                    1, 1, 1, 1, 3.75,
+                    1, 1, 1, 1, 3.5,
                     1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,
                     1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,    
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 0.85,
+                    0.25, 0.25, 0.5, 0.5, 0.85, 0.85, 0.85, 0.85,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 0.85,
+                    0.25, 0.25, 0.5, 0.5, 0.85, 0.85, 0.85, 0.85,
                                     ]
 num_notes = [5, 5, 13, 12,9,9,17 ,17]
 # test_val = 1
@@ -128,7 +131,7 @@ while True:
  
         if deletion == 1:
             # print(f"game timer before{game_timer}")
-            game_timer -= 0.09
+            game_timer -= 0.12
             # print(f"game timer after{game_timer}")
             deletion = 0
 
@@ -147,7 +150,10 @@ while True:
     # print(type(events))
     # print(game_timer)
     # Switch scenes if there is a new scene.
-    new_scene = scene.update(events, dt)
+    if scene != scenes['exit']:
+        new_scene = scene.update(events, dt)
+    else:
+        new_scene = scene.update(events, round(total_score,2))
     # print (i)
 
     if new_scene is not scene:

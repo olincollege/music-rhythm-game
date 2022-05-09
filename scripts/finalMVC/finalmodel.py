@@ -65,12 +65,12 @@ class Game():
                       the game loop
 
         Returns:
-            self.scenes['menu']: the Menu class, the next scene, if 42.3 seconds
+            self.scenes['menu']: the Menu class, the next scene, if 40 seconds
                                  pass.
-            self: essentially, nothing, if 42.3 seconds has not passed.
+            self: essentially, nothing, if 40 seconds has not passed.
         """
         self.game_timer += dt
-        if self.game_timer >= 42.3:
+        if self.game_timer >= 40:
             return self.scenes['exit']
         self.screen.blit(self.background.image, self.background.rect)
 
@@ -279,18 +279,18 @@ def melody_arrow_generator(BPM, song_info):
     """
     next_notes = []
     
-    multiplier = 1.35
+    multiplier = 1.75
     for note in song_info:
         quarter_note_length = 60*1000/BPM
         # error correction for game lag
         if note == 4:
-            quarter_note_length = quarter_note_length - 48*multiplier
+            quarter_note_length = quarter_note_length - 60*multiplier
         if note == 2:
-            quarter_note_length = quarter_note_length - 24*multiplier
+            quarter_note_length = quarter_note_length - 48*multiplier
         if note == 1:
-            quarter_note_length = quarter_note_length - 13*multiplier
+            quarter_note_length = quarter_note_length - 36*multiplier
         if note == 0.5:
-            quarter_note_length = quarter_note_length - 40*multiplier
+            quarter_note_length = quarter_note_length - 48*multiplier
         if note == 0.25:
             quarter_note_length = quarter_note_length - 70*multiplier
 
