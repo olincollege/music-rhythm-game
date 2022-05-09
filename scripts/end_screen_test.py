@@ -4,9 +4,8 @@ pg.init()
 WIDTH, HEIGHT = 1280, 720
 PINK = (255, 16, 240)
 
-bg = pg.image.load("assets/imgs/end screen.png")
+bg = pg.image.load("scripts/assets/imgs/end screen.png")
 screen = pg.display.set_mode((WIDTH, HEIGHT))
-end_screen_cat = Cat("dj", 450, 200)
 
 total_score = 10
 
