@@ -40,4 +40,4 @@ Meow.
 
 Isabel de Luis (Olin '25):
 
-
+Isa loves cats (her greatest shame is that she's allergic to them), coding, and wrangling pygame issues. She's happy with the way the game turned out and thinks the team is pretty awesome :)
