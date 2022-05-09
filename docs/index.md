@@ -36,7 +36,7 @@ Richard loves music, coding, and spending 5 hours changing numbers back and fort
 
 Madie Tong (Olin '25):
 
-Meow.
+Meow. Madie likes cats, music, and games. That's why we're creating this game :) it all started with a vision from yours truly. now we're suffering. sorry guys, should've chosen something slightly easier.
 
 Isabel de Luis (Olin '25):
 
