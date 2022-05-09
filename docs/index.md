@@ -23,6 +23,8 @@ The computer will play first, showing you what arrows are going to come for you.
 # Demo:
 [Here's a Demo of the game!](https://youtu.be/nYD9bt-oiCg)
 
+Here's a [video presentation](https://youtu.be/M1V3YjCDPSw) introducing the game
+
 # Attributions
 Inspired by [**Friday Night Funkin**]( https://en.wikipedia.org/wiki/Friday_Night_Funkin%27) || Play [here]( https://friday-nightfunkin.io/)
 
