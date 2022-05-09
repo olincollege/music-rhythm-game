@@ -2,7 +2,7 @@
 Main game loop for catJAM
 """
 # Disabled pylint errors that would break our game if fixed
-# pylint: disable=wildcard-import
+# pylint: disable=wildcard-import 
 # pylint: disable=no-member
 # pylint: disable=bare-except
 # pylint: disable=protected-access
@@ -174,7 +174,7 @@ while True:
         # If there is a new scene, make sure to allow the old
         # scene to exit and the new scene to start.
         scene.exit()
-        print("In here")
+        # print("In here")
         scene = new_scene
         game_timer = 0
         scene.start()
@@ -201,10 +201,10 @@ while True:
             # If the melody number is divisible by 2, that means it's the
             # computer's turn
             if melody % 2 == 0:
-                print("computer")
+                # print("computer")
                 computer_produce_arrow(computer_arrows,arrows_on_screen)
             else:
-                print("player")
+                # print("player")
                 try:
                     player_produce_arrow(player_arrows,arrows_on_screen)
                     arrows_on_screen.pop(0)
