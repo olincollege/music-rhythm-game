@@ -185,7 +185,7 @@ while True:
             pg.quit()
             exit()
 
-        if event.type == add_arrow and game_timer > DELAY:
+        if event.type == add_arrow and GAME_TIMER > DELAY:
             # print(f"melody: {melody}")
             # print(f"melody_counter: {melody_counter}")
 
