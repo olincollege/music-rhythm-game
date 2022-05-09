@@ -51,9 +51,9 @@ class Menu():
         """
         self.scenes = scenes
         self.screen = screen
-        self.music = pg.mixer.Sound("../assets/soundtrack/base beat.wav")
+        self.music = pg.mixer.Sound("assets/soundtrack/base beat.wav")
         self.channel = pg.mixer.Channel(0)
-        self.background = Background('../assets/imgs/menu.png', [0, 0])
+        self.background = Background('assets/imgs/menu.png', [0, 0])
 
     def start(self):
         """
@@ -111,10 +111,10 @@ class Exit():
         """
         self.scenes = scenes
         self.screen = screen
-        self.music = pg.mixer.Sound("../assets/soundtrack/tutorial.wav")
+        self.music = pg.mixer.Sound("assets/soundtrack/tutorial.wav")
         self.font = pg.font.Font('Eczar-SemiBold.ttf', 40)
         self.channel = pg.mixer.Channel(0)
-        self.background = Background("../assets/imgs/end screen.png", [0, 0])
+        self.background = Background("assets/imgs/end screen.png", [0, 0])
 
     def start(self):
         """
@@ -180,41 +180,41 @@ class Cat(pg.sprite.Sprite):
         """
         if cat == "piano":
             self._surface = pg.image.load\
-                ("../assets/imgs/pianocat.png").convert_alpha()
+                ("assets/imgs/pianocat.png").convert_alpha()
             self._surface = pg.transform.smoothscale(self._surface, (300, 300))
         elif cat == "speaker":
             self._surface = pg.image.load\
-            ("../assets/imgs/Speakers Cat Temp Sprite.png").convert_alpha()
+            ("assets/imgs/Speakers Cat Temp Sprite.png").convert_alpha()
             self._surface = pg.transform.smoothscale(self._surface, (250, 250))
         elif cat == "guitar":
             self._surface = pg.image.load\
-               ("../assets/imgs/guitarcat.png").convert_alpha()
+               ("assets/imgs/guitarcat.png").convert_alpha()
             self._surface = pg.transform.smoothscale(self._surface, (350, 350))
         elif cat == "dj":
-            self._surface = pg.image.load("../assets/imgs/djcat.png")\
+            self._surface = pg.image.load("assets/imgs/djcat.png")\
             .convert_alpha()
             self._surface = pg.transform.smoothscale(self._surface, (325, 325))
         elif cat == "drum":
-            self._surface = pg.image.load("../assets/imgs/drumcat.png")\
+            self._surface = pg.image.load("assets/imgs/drumcat.png")\
             .convert_alpha()
             self._surface = pg.transform.smoothscale(self._surface, (300, 300))
 
         if mirrored:
             if cat == "piano":
                 self._surface = pg.image.load\
-                ("../assets/imgs/backcat2.png").convert_alpha()
+                ("assets/imgs/backcat2.png").convert_alpha()
                 self._surface = pg.transform.smoothscale(self._surface, \
                     (300, 300))
                 self._surface = pg.transform.flip(self._surface, True, False)
 
             elif cat == "guitar":
                 self._surface = pg.image.load\
-                ("../assets/imgs/guitarcat2.png").convert_alpha()
+                ("assets/imgs/guitarcat2.png").convert_alpha()
                 self._surface = pg.transform.smoothscale(self._surface, \
                     (350, 350))
                 self._surface = pg.transform.flip(self._surface, True, False)
             elif cat == "drum":
-                self._surface = pg.image.load("../assets/imgs/backcat.png")\
+                self._surface = pg.image.load("assets/imgs/backcat.png")\
                     .convert_alpha()
                 self._surface = pg.transform.smoothscale(self._surface, \
                     (300, 300))

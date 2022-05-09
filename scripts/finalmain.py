@@ -15,7 +15,7 @@ from finalmodel import *
 from finalview import *
 
 pg.init()
-GAME_TIMER = 0
+game_timer = 0
 showarrows = True
 WIDTH, HEIGHT = 1280, 720
 BPM = 100  # tempo of the song
@@ -23,8 +23,8 @@ BPM = 100  # tempo of the song
 # Add in a delay for the arrows to error correct
 # Changes based on arrow speed.
 # DELAY = 3.59
-# DELAY = 3.74
-DELAY = 3.22 
+DELAY = 3.74
+# DELAY = 3.22 
 # DELAY = 3
 
 # screen size
@@ -96,17 +96,17 @@ right_arrows = []
 down_arrows = []
 
 song_information = [1, 1, 1, 1, 4,
-                    1, 1, 1, 1, 3.5,
+                    1, 1, 1, 1, 4.2,
                     1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
-                    0.25,
+                    0.5,
                     1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
-                    0.25,    
-                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
-                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
+                    0.5,    
+                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.85,
+                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.85,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 0.85, 0.85, 0.85, 0.85,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 0.85, 0.85, 0.85, 0.85,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                                     ]
 num_notes = [5, 5, 13, 12,9,9,17 ,17]
 arrows_on_screen = []
@@ -136,25 +136,25 @@ while True:
 
     # if game_timer % length == True:
     #     pg.time.set_timer(add_arrow, length)
-    GAME_TIMER = GAME_TIMER + dt
-    print (f"game timer {GAME_TIMER}")
+    game_timer = game_timer + dt
+    # print (f"game timer {GAME_TIMER}")
 
     if scene == scenes["game"]:
  
         if deletion == 1:
             # print(f"game timer before{game_timer}")
-            game_timer -= 0.12
+            game_timer -= 0.08
             # print(f"game timer after{game_timer}")
             deletion = 0
 
         # The intro before the game begins = DELAY
-        if GAME_TIMER > DELAY:
-            if GAME_TIMER > next_note + saved_time and note_counter < \
+        if game_timer > DELAY:
+            if game_timer > next_note + saved_time and note_counter < \
                 len(next_notes):
                 pg.event.post(add_arrow_event)
                 # print(f"post time added {game_timer - saved_time}")
                 next_note = next_notes[note_counter]
-                saved_time = GAME_TIMER
+                saved_time = game_timer
                 # print(f"counter {counter}")
                 note_counter += 1
                 melody_counter += 1
@@ -174,6 +174,7 @@ while True:
         # If there is a new scene, make sure to allow the old
         # scene to exit and the new scene to start.
         scene.exit()
+        print("In here")
         scene = new_scene
         game_timer = 0
         scene.start()
@@ -185,7 +186,7 @@ while True:
             pg.quit()
             exit()
 
-        if event.type == add_arrow and GAME_TIMER > DELAY:
+        if event.type == add_arrow and game_timer > DELAY:
             # print(f"melody: {melody}")
             # print(f"melody_counter: {melody_counter}")
 

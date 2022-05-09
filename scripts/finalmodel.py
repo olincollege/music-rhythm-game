@@ -38,10 +38,10 @@ class Game():
         self.screen = screen
         self.font = pygame.font.SysFont('freesansbold.ttf', 32)
         self.music = pygame.mixer.Sound(
-            "../assets/soundtrack/melodies with intro.wav")
+            "assets/soundtrack/melodies with intro.wav")
         self.channel = pygame.mixer.Channel(0)
         self.game_timer = 0
-        self.background = Background('../assets/imgs/Background.png', [0, 0])
+        self.background = Background('assets/imgs/Background.png', [0, 0])
 
     def start(self):
         """
@@ -65,12 +65,12 @@ class Game():
                       the game loop
 
         Returns:
-            self.scenes['menu']: the Menu class, the next scene, if 40 seconds
+            self.scenes['menu']: the Menu class, the next scene, if 42.3 seconds
                                  pass.
-            self: essentially, nothing, if 40 seconds has not passed.
+            self: essentially, nothing, if 42.3 seconds has not passed.
         """
         self.game_timer += dt
-        if self.game_timer >= 40:
+        if self.game_timer >= 42.3:
             return self.scenes['exit']
         self.screen.blit(self.background.image, self.background.rect)
 
@@ -110,23 +110,23 @@ class Arrow(pg.sprite.Sprite):
         """
         Create a new instance of the arrow sprite that is scaled and rotated.
         """
-        self._surface = pg.image.load("../assets/imgs/arrow_sprite.png").\
+        self._surface = pg.image.load("assets/imgs/arrow_sprite.png").\
             convert_alpha()
 
         if direction == "up":
-            self._surface = pg.image.load("../assets/imgs/green_arrow.png")\
+            self._surface = pg.image.load("assets/imgs/green_arrow.png")\
                 .convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 90)
         if direction == "down":
-            self._surface = pg.image.load("../assets/imgs/blue_arrow.png").\
+            self._surface = pg.image.load("assets/imgs/blue_arrow.png").\
                 convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 270)
         if direction == "right":
-            self._surface = pg.image.load("../assets/imgs/yellow_arrow.png").\
+            self._surface = pg.image.load("assets/imgs/yellow_arrow.png").\
                 convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 0)
         if direction == "left":
-            self._surface = pg.image.load("../assets/imgs/pink_arrow.png").\
+            self._surface = pg.image.load("assets/imgs/pink_arrow.png").\
                 convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 180)
 
@@ -279,18 +279,18 @@ def melody_arrow_generator(BPM, song_info):
     """
     next_notes = []
     
-    multiplier = 1.75
+    multiplier = 1
     for note in song_info:
         quarter_note_length = 60*1000/BPM
         # error correction for game lag
         if note == 4:
-            quarter_note_length = quarter_note_length - 60*multiplier
+            quarter_note_length = quarter_note_length - 40*multiplier
         if note == 2:
-            quarter_note_length = quarter_note_length - 48*multiplier
+            quarter_note_length = quarter_note_length - 24*multiplier
         if note == 1:
-            quarter_note_length = quarter_note_length - 36*multiplier
+            quarter_note_length = quarter_note_length - 20*multiplier
         if note == 0.5:
-            quarter_note_length = quarter_note_length - 48*multiplier
+            quarter_note_length = quarter_note_length - 40*multiplier
         if note == 0.25:
             quarter_note_length = quarter_note_length - 70*multiplier
 
