@@ -47,7 +47,8 @@ class Menu():
         screen: the dimensions of the screen the scene will be placed on
         music: the music associated with the menu screen
         channel: the channel that said music will be played on
-        background: an instance of the Background class with the background image
+        background: an instance of the Background class with the background
+                    image
         
     """
     def __init__(self, screen, scenes):
@@ -62,28 +63,37 @@ class Menu():
 
     def start(self):
         """
-        Starts the scene by laying down the background image and playing the music
+        Starts the scene by laying down the background image and playing the
+        music
         """
         self.screen.blit(self.background.image, self.background.rect)
         self.channel.play(self.music, loops=-1, fade_ms=0)
 
     def update(self, events, dt):
         """
-        Updates the screen based on what events have occured. If the space bar has been pressed in the menu, move to the Game class.
+        Updates the screen based on what events have occured. If the space bar
+        has been pressed in the menu, move to the Game class.
 
         Args:
-            events (list): a list of all of the events that have occured in one cycle of the game loop
-            dt (int): the amount of time that has passed since the last cycle of the game loop
+            events (list): a list of all of the events that have occured in one
+                           cycle of the game loop
+            dt (int): the amount of time that has passed since the last cycle of
+                      the game loop
 
         Returns:
-            self.scenes['game']: the Game class, the next scene, if the space bar is pressed
+            self.scenes['game']: the Game class, the next scene, if the space bar
+                                 is pressed
             self: essentially, nothing, if none of the events is the space bar.
         """
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+<<<<<<< HEAD
                 return self.scenes['game']
         #self.screen.blit(self.background.image, self.background.rect)
         #self.screen.blit(self.font.render("Menu", True, 'white'), (WIDTH/2 - 20, 100))
+=======
+                return self.scenes['exit']
+>>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
         return self
 
     def exit(self):
@@ -101,7 +111,8 @@ class Game():
         screen: the dimensions of the screen the scene will be placed on
         music: the music associated with the menu screen
         channel: the channel that said music will be played on
-        background: an instance of the Background class with the background image
+        background: an instance of the Background class with the background
+                    image
         
     """
     
@@ -120,7 +131,8 @@ class Game():
 
     def start(self):
         """
-        Starts the scene by laying down the background image and playing the music
+        Starts the scene by laying down the background image and playing the
+        music
         """
         self.channel.play(self.music, loops=0, fade_ms=0)
         self.screen.blit(self.background.image, self.background.rect)
@@ -129,14 +141,18 @@ class Game():
 
     def update(self, events, dt):
         """
-        Updates the screen based on what events have occured. If the soundtrack has finished playing, return to the menu class.
+        Updates the screen based on what events have occured. If the soundtrack
+        has finished playing, return to the menu class.
 
         Args:
-            events (list): a list of all of the events that have occured in one cycle of the game loop
-            dt (int): the amount of time that has passed since the last cycle of the game loop
+            events (list): a list of all of the events that have occured in one
+                           cycle of the game loop
+            dt (int): the amount of time that has passed since the last cycle of
+                      the game loop
 
         Returns:
-            self.scenes['menu']: the Menu class, the next scene, if 42.3 seconds pass.
+            self.scenes['menu']: the Menu class, the next scene, if 42.3 seconds
+                                 pass.
             self: essentially, nothing, if 42.3 seconds has not passed.
         """
         self.game_timer += dt
@@ -161,7 +177,8 @@ class Exit():
         screen: the dimensions of the screen the scene will be placed on
         music: the music associated with the menu screen
         channel: the channel that said music will be played on
-        background: an instance of the Background class with the background image
+        background: an instance of the Background class with the background
+                    image
         
     """
     def __init__(self, screen, scenes):
@@ -176,7 +193,8 @@ class Exit():
 
     def start(self):
         """
-        Starts the scene by laying down the background image and playing the music
+        Starts the scene by laying down the background image and playing the
+        music
         """
         self.screen.blit(self.background.image, self.background.rect)
         self.channel.play(self.music, loops=-1, fade_ms=0)
@@ -186,18 +204,19 @@ class Exit():
         Updates the screen based on what events have occured. 
 
         Args:
-            events (list): a list of all of the events that have occured in one cycle of the game loop
-            dt (int): the amount of time that has passed since the last cycle of the game loop
+            events (list): a list of all of the events that have occured in one
+                           cycle of the game loop
+            dt (int): the amount of time that has passed since the last cycle of
+                      the game loop
 
         Returns:
-            self.scenes['game']: the Game class, the next scene, if the space bar is pressed
+            self.scenes['game']: the Game class, the next scene, if the space
+                                 bar is pressed
             self: essentially, nothing, if none of the events is the space bar.
         """
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 pass
-        #self.screen.blit(self.background.image, self.background.rect)
-        #self.screen.blit(self.font.render("Menu", True, 'white'), (WIDTH/2 - 20, 100))
         return self
 
     def exit(self):
@@ -235,8 +254,10 @@ def produce_arrow():
 
 def melody_arrow_generator(BPM, song_info):
     """
-    Each int in the song_info list corresponds to how many beats that note will last.
-    For example, a 1 means it will last 1 beat (a quarter note). A 4 means it will last 4 beats (a whole note)
+    Each int in the song_info list corresponds to how many beats that note will
+    last.
+    For example, a 1 means it will last 1 beat (a quarter note). A 4 means it
+    will last 4 beats (a whole note)
 
     Args:
         BPM: an int containing the beats per minute of a tempo
@@ -284,7 +305,7 @@ def player_produce_arrow():
   This function produces arrows on the arrow's side based off the pattern
   of arrows that the computer sides function.
   """
-  if arrows_on_screen[0] == "up": # index error here...because list index out of range 
+  if arrows_on_screen[0] == "up": 
     copy_arrow = ar.PlayerArrow("up")
     copy_arrow.position()
     player_arrows[0].append(copy_arrow)
@@ -372,16 +393,24 @@ down_arrows = []
 
 song_information = [1, 1, 1, 1, 4,
                     1, 1, 1, 1, 4,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    0.5,
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    0.5,
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 1,
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 1,
-                    0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
-                    0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
+                    0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
+                    0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                                     ]
+<<<<<<< HEAD
 num_notes = [5, 5, 14, 14,10,10,18,18]
 # test_val = 1
 # song_information = [test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val]
+=======
+num_notes = [5, 10, 24, 38,48,58,76,94]
+>>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
 arrows_on_screen = []
 computer_arrows = []
 player_arrows = [[], [], [], []]
@@ -416,7 +445,12 @@ while True:
 
         # The intro before the game begins = DELAY
         if game_timer > DELAY:
+<<<<<<< HEAD
             if game_timer > next_note + saved_time and note_counter < len(next_notes):
+=======
+            if game_timer > next_note + saved_time and counter < len\
+                (next_notes):
+>>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
                 pg.event.post(add_arrow_event)
                 print(f"post time added {game_timer - saved_time}")
                 next_note = next_notes[note_counter]
@@ -466,7 +500,8 @@ while True:
         #keybinds
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_UP:
-            #if the number of up arrows in the player's side is not zero, then you can delete the first arrow when key is pressed
+            #if the number of up arrows in the player's side is not zero, 
+            # then you can delete the first arrow when key is pressed
                 if len(player_arrows[0]) != 0:
                     total_score += score_calc(player_arrows[0][0]._y, "up")
                 try:
@@ -535,7 +570,8 @@ while True:
         # guitar_cat_2.display(screen)
     
 #potential off screen delete solution
-    for arrow in computer_arrows + player_arrows[0] + player_arrows[1] + player_arrows[2] + player_arrows[3]:
+    for arrow in computer_arrows + player_arrows[0] + player_arrows[1] + \
+        player_arrows[2] + player_arrows[3]:
         if arrow.at_top_screen():
             if arrow.class_type() == "computer":
                 computer_arrows.remove(arrow)
