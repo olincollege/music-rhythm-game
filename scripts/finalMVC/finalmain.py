@@ -1,9 +1,21 @@
+"""
+Main game loop for catJAM
+"""
+# Disabled pylint errors that would break our game if fixed
+# pylint: disable=wildcard-import
+# pylint: disable=no-member
+# pylint: disable=bare-except
+# pylint: disable=protected-access
+# pylint: disable=consider-using-sys-exit
+# pylint: disable=expression-not-assigned
+# pylint: disable=unused-wildcard-import
+# pylint: disable=invalid-name
 from finalcontroller import *
 from finalmodel import *
 from finalview import *
 
 pg.init()
-game_timer = 0
+GAME_TIMER = 0
 showarrows = True
 WIDTH, HEIGHT = 1280, 720
 BPM = 100  # tempo of the song
@@ -79,8 +91,10 @@ down_arrows = []
 
 song_information = [1, 1, 1, 1, 4,
                     1, 1, 1, 1, 3.75,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,    
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    0.25,
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    0.25,
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
@@ -89,8 +103,6 @@ song_information = [1, 1, 1, 1, 4,
                     0.25, 0.25, 0.5, 0.5, 1, 1, 1, 0.85,
                                     ]
 num_notes = [5, 5, 13, 12,9,9,17 ,17]
-# test_val = 1
-# song_information = [test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val]
 arrows_on_screen = []
 computer_arrows = []
 player_arrows = [[], [], [], []]
@@ -113,23 +125,24 @@ while True:
 
     # if game_timer % length == True:
     #     pg.time.set_timer(add_arrow, length)
-    game_timer = game_timer + dt
-    print (f"game timer {game_timer}")
+    GAME_TIMER = GAME_TIMER + dt
+    print (f"game timer {GAME_TIMER}")
 
     if scene == scenes["game"]:
         if deletion == 1:
             # print(f"game timer before{game_timer}")
-            game_timer -= 0.09
+            GAME_TIMER -= 0.09
             # print(f"game timer after{game_timer}")
             deletion = 0
 
         # The intro before the game begins = DELAY
-        if game_timer > DELAY:
-            if game_timer > next_note + saved_time and note_counter < len(next_notes):
+        if GAME_TIMER > DELAY:
+            if GAME_TIMER > next_note + saved_time and note_counter < \
+                len(next_notes):
                 pg.event.post(add_arrow_event)
                 # print(f"post time added {game_timer - saved_time}")
                 next_note = next_notes[note_counter]
-                saved_time = game_timer
+                saved_time = GAME_TIMER
                 # print(f"counter {counter}")
                 note_counter += 1
                 melody_counter += 1
@@ -160,15 +173,17 @@ while True:
         if event.type == add_arrow and game_timer > DELAY:
             # print(f"melody: {melody}")
             # print(f"melody_counter: {melody_counter}")
-            
-            # if the number of notes in this melody is greater than the number of notes for this melody
+
+            # if the number of notes in this melody is greater than the
+            # number of notes for this melody
             if melody_counter > num_notes[melody]:
                 # go onto the next melody
                 melody += 1
                 # reset the counter
                 melody_counter = 0
-                
-            # If the melody number is divisible by 2, that means it's the computer's turn
+
+            # If the melody number is divisible by 2, that means it's the
+            # computer's turn
             if melody % 2 == 0:
                 print("computer")
                 computer_produce_arrow(computer_arrows,arrows_on_screen)
@@ -179,13 +194,11 @@ while True:
                     arrows_on_screen.pop(0)
                 except IndexError:
                     print("back to the computer")
-                
-                
 
         #keybinds
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_UP:
-            #if the number of up arrows in the player's side is not zero, 
+            #if the number of up arrows in the player's side is not zero,
             # then you can delete the first arrow when key is pressed
                 if len(player_arrows[0]) != 0:
                     total_score += score_calc(player_arrows[0][0]._y, "up")
@@ -201,7 +214,7 @@ while True:
                     del player_arrows[1][0]
                 except:
                     pass
-            
+
             elif event.key == pg.K_RIGHT:
                 if len(player_arrows[2]) != 0:
                     total_score += score_calc(player_arrows[2][0]._y, "right")
@@ -209,15 +222,15 @@ while True:
                     del player_arrows[2][0]
                 except:
                     pass
-            
+
             elif event.key == pg.K_DOWN:
                 if len(player_arrows[3]) != 0:
                     total_score += score_calc(player_arrows[3][0]._y, "down")
                 try:
                     del player_arrows[3][0]
-                except: 
+                except:
                     pass
-            
+
 
     # display the arrows at the top of the screen if not in menu
     if scene == scenes["game"]:
@@ -238,13 +251,13 @@ while True:
         comp_down.display_arrow(screen)
         comp_up.display_arrow(screen)
         comp_right.display_arrow(screen)
-        
+
         p_left.display_arrow(screen)
         p_down.display_arrow(screen)
         p_up.display_arrow(screen)
         p_right.display_arrow(screen)
         # dj_cat.display(screen)
-        
+
         # drum_cat.display(screen)
         # piano_cat.display(screen)
         # speaker_cat.display(screen)
@@ -253,14 +266,14 @@ while True:
         # drum_cat_2.display(screen)
         # piano_cat_2.display(screen)
         # guitar_cat_2.display(screen)
-    
+
 #potential off screen delete solution
     for arrow in computer_arrows + player_arrows[0] + player_arrows[1] + \
         player_arrows[2] + player_arrows[3]:
         if arrow.at_top_screen():
             if arrow.class_type() == "computer":
                 computer_arrows.remove(arrow)
-            
+
             elif arrow.class_type() == "player":
                 if arrow.get_direction() == "up":
                     #player_arrows[0].remove(arrow)
