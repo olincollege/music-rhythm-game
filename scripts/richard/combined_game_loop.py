@@ -81,7 +81,7 @@ class Menu():
         """
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                return self.scenes['exit']
+                return self.scenes['game']
         #self.screen.blit(self.background.image, self.background.rect)
         #self.screen.blit(self.font.render("Menu", True, 'white'), (WIDTH/2 - 20, 100))
         return self
@@ -258,7 +258,7 @@ def melody_arrow_generator(BPM, song_info):
         if note == 0.5:
             quarter_note_length = quarter_note_length - 50
         if note == 0.25:
-            quarter_note_length = quarter_note_length - 115
+            quarter_note_length = quarter_note_length - 70
 
         next_notes.append(quarter_note_length*note/1000)
     return next_notes
@@ -379,7 +379,7 @@ song_information = [1, 1, 1, 1, 4,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                                     ]
-num_notes = [5, 10, 24, 38,48,58,76,94]
+num_notes = [5, 5, 14, 14,10,10,18,18]
 # test_val = 1
 # song_information = [test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val]
 arrows_on_screen = []
@@ -393,7 +393,8 @@ add_arrow_event = pg.event.Event(add_arrow)
 
 
 deletion = 0
-counter = 0
+note_counter = 0
+melody_counter = 0
 saved_time = 0
 next_notes = melody_arrow_generator(BPM, song_information)
 print(next_notes)
@@ -415,13 +416,14 @@ while True:
 
         # The intro before the game begins = DELAY
         if game_timer > DELAY:
-            if game_timer > next_note + saved_time and counter < len(next_notes):
+            if game_timer > next_note + saved_time and note_counter < len(next_notes):
                 pg.event.post(add_arrow_event)
                 print(f"post time added {game_timer - saved_time}")
-                next_note = next_notes[counter]
+                next_note = next_notes[note_counter]
                 saved_time = game_timer
                 # print(f"counter {counter}")
-                counter += 1
+                note_counter += 1
+                melody_counter += 1
 
     events = pg.event.get()
     # print(type(events))
@@ -448,16 +450,19 @@ while True:
 
         if event.type == add_arrow and game_timer > DELAY:
             print(f"melody: {melody}")
-            print(f"counter: {counter}")
-            if counter <= num_notes[melody]:
+            print(f"counter: {melody_counter}")
+            
+            if melody_counter > num_notes[melody]:
+                melody += 1
+                melody_counter = 0
+                
+            if melody_counter <= num_notes[melody]:
                 if melody % 2 == 0:
                     computer_produce_arrow()
                 else:
                     player_produce_arrow()
                     arrows_on_screen.pop(0)
-            else:
-                melody += 1
-            
+
         #keybinds
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_UP:
@@ -495,9 +500,9 @@ while True:
             
 
     # display the arrows at the top of the screen if not in menu
-    if scene != scenes["menu"]:
-        new_computer_arrows = [[], [], [], []]
-        new_player_arrows = [[], [], [], []]
+    if scene == scenes["game"]:
+        # new_computer_arrows = [[], [], [], []]
+        # new_player_arrows = [[], [], [], []]
           # display moving arrows if not in menu scene
         for arrow in computer_arrows:
             arrow.display_arrow(screen)
