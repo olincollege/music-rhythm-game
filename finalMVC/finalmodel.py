@@ -1,6 +1,15 @@
 """
--Game Class: put here cuz tis the game duh lmao
+Model of catJAM game
+Note from Isa:
+Some more unused arguments--richard take a look and see if we actually need
+those
 """
+# Disabled pylint warnings that would break our game if fixed
+# pylint: disable=wildcard-import
+# pylint: disable=no-member
+# pylint: disable=unused-wildcard-import
+# pylint: disable=invalid-name
+
 import pygame
 from finalview import *
 from finalcontroller import *
@@ -9,7 +18,7 @@ pygame.init()
 class Game():
     """
     A Game interface scene for catJAM
-    
+
     Attributes:
         scenes: the dictionary containing all of the scenes to be cycled through
         screen: the dimensions of the screen the scene will be placed on
@@ -17,9 +26,9 @@ class Game():
         channel: the channel that said music will be played on
         background: an instance of the Background class with the background
                     image
-        
+
     """
-    
+
     def __init__(self, screen, scenes):
         """
         Creates an instance of the Game class.
@@ -41,7 +50,7 @@ class Game():
         self.channel.play(self.music, loops=0, fade_ms=0)
         self.screen.blit(self.background.image, self.background.rect)
         #print("playing" + str(game_timer))
-        pass
+
 
     def update(self, events, dt):
         """

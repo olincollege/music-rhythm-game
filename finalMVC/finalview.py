@@ -1,27 +1,22 @@
 """
-NOTE: we're probably adding the game file into this? 
-
-MADIE's REASONING
-
--Background Class: 
-    i put this here cuz it prints a view of background 
--Menu Class: 
-    up for debate. it prints the menu and general "view" as
-    opposed to actual gameplay? but it does have some interactive features
-    like space to play
--Exit Class:
-    also up for debate, for same reason as Menu. it's just the view afterwards, no gameplay
+View for catJAM game
+Note from Isa:
+This file has some unused argument pylint warnings--are the arguments essential
+to our game?
 """
 import pygame
 
-
+# Disable pylint warnings that would break our game if fixed
+# pylint: disable=too-few-public-methods
+# pylint: disable=invalid-name
+# pylint: disable=no-member
 class Background(pygame.sprite.Sprite):
     """
-    A Background class that helps define 
+    A Background class that helps define
 
     Args:
         A pygame.sprite.Sprite: an image file to convert into the background
-    """ 
+    """
     def __init__(self, image_file, location):
         """
         Creates a new instance of a background
@@ -39,7 +34,7 @@ class Background(pygame.sprite.Sprite):
 class Menu():
     """
     A menu interface scene for catJAM
-    
+
     Attributes:
         scenes: the dictionary containing all of the scenes to be cycled through
         screen: the dimensions of the screen the scene will be placed on
@@ -47,7 +42,7 @@ class Menu():
         channel: the channel that said music will be played on
         background: an instance of the Background class with the background
                     image
-        
+
     """
     def __init__(self, screen, scenes):
         """
@@ -79,15 +74,13 @@ class Menu():
                       the game loop
 
         Returns:
-            self.scenes['game']: the Game class, the next scene, if the space bar
-                                 is pressed
+            self.scenes['game']: the Game class, the next scene, if the space
+                                 bar is pressed
             self: essentially, nothing, if none of the events is the space bar.
         """
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 return self.scenes['game']
-        #self.screen.blit(self.background.image, self.background.rect)
-        #self.screen.blit(self.font.render("Menu", True, 'white'), (WIDTH/2 - 20, 100))
         return self
 
     def exit(self):
@@ -100,7 +93,7 @@ class Menu():
 class Exit():
     """
     A menu interface scene for catJAM
-    
+
     Attributes:
         scenes: the dictionary containing all of the scenes to be cycled through
         screen: the dimensions of the screen the scene will be placed on
@@ -108,7 +101,7 @@ class Exit():
         channel: the channel that said music will be played on
         background: an instance of the Background class with the background
                     image
-        
+
     """
     def __init__(self, screen, scenes):
         """
@@ -130,7 +123,7 @@ class Exit():
 
     def update(self, events, dt):
         """
-        Updates the screen based on what events have occured. 
+        Updates the screen based on what events have occured.
 
         Args:
             events (list): a list of all of the events that have occured in one

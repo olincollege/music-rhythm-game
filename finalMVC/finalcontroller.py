@@ -1,12 +1,14 @@
 """
-NOTE FOR MY HOMIES EDITING THIS:
-my helper functions computer_produce_arrow and player_prduce_arrow are down
-below under the classes, and have errors. they call on lists that are in the game file.
-IDK in that case if they belong in this section or if i should leave them in the game file.
-
+File for catJAM game controller
 """
-import pygame as pg
 import random
+import pygame as pg
+
+# Disabled pylint warnings that would break our code if we fixed
+# pylint: disable=invalid-name
+# pylint: disable=useless-super-delegation
+# pylint: disable=no-self-use
+# pylint: disable=not-callable
 
 class Arrow(pg.sprite.Sprite):
     """
@@ -14,11 +16,11 @@ class Arrow(pg.sprite.Sprite):
     moving arrows. Also allows for easy control of arrow movement.
 
     Attributes:
-        _surface: 
+        _surface:
             An image of the arrow sprite. Different colors of the same arrow
             are loaded for different instances dependent on which direction
             it points in.
-        _direction: 
+        _direction:
             A string representing the direction that the user wants the arrow
             to point in. Direction determines which arrow image gets loaded,
             how much the image is rotated, and where on the screen it initially
@@ -30,24 +32,29 @@ class Arrow(pg.sprite.Sprite):
             An integer representing the y-position of the sprite on the screen.
             This gets used when displaying the sprite.
     """
-    
+
     def __init__(self, direction):
         """
         Create a new instance of the arrow sprite that is scaled and rotated.
         """
-        self._surface = pg.image.load("assets/imgs/arrow_sprite.png").convert_alpha()
+        self._surface = pg.image.load("assets/imgs/arrow_sprite.png").\
+            convert_alpha()
 
         if direction == "up":
-            self._surface = pg.image.load("assets/imgs/green_arrow.png").convert_alpha()
+            self._surface = pg.image.load("assets/imgs/green_arrow.png")\
+                .convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 90)
         if direction == "down":
-            self._surface = pg.image.load("assets/imgs/blue_arrow.png").convert_alpha()
+            self._surface = pg.image.load("assets/imgs/blue_arrow.png").\
+                convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 270)
         if direction == "right":
-            self._surface = pg.image.load("assets/imgs/yellow_arrow.png").convert_alpha()
+            self._surface = pg.image.load("assets/imgs/yellow_arrow.png").\
+                convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 0)
         if direction == "left":
-            self._surface = pg.image.load("assets/imgs/pink_arrow.png").convert_alpha()
+            self._surface = pg.image.load("assets/imgs/pink_arrow.png").\
+                convert_alpha()
             self._surface = pg.transform.rotate(self._surface, 180)
 
         self._surface = pg.transform.smoothscale(self._surface, (95, 95))
@@ -67,7 +74,7 @@ class Arrow(pg.sprite.Sprite):
         Changes the x and y values.
 
         Args:
-            x: 
+            x:
                 An integer representing the pixel position on the screen that
                 the user wants to set the sprite to.
             y:
@@ -97,7 +104,7 @@ class Arrow(pg.sprite.Sprite):
 
     def update(self):
         """
-        Changes the arrow's y position. When run in the game loop, the arrow 
+        Changes the arrow's y position. When run in the game loop, the arrow
         will move up the screen by 2 pixels.
         """
         self._y -= 2
@@ -151,7 +158,7 @@ class PlayerArrow(Arrow):
         Returns a string that indicates to a user which class arrow it is.
         """
         return "player"
-         
+
 
 class ComputerArrow(Arrow):
     """
@@ -208,42 +215,42 @@ def computer_produce_arrow(computer_arrows, arrows_on_screen):
     print(new_arrow.get_position())
 
     computer_arrows.append(new_arrow)
-  
+
     arrows_on_screen.append(random_arrow)
 
     return computer_arrows, arrows_on_screen
 
 def player_produce_arrow(player_arrows, arrows_on_screen):
-  """
-  This function produces arrows on the arrow's side based off the pattern
-  of arrows that the computer sides function.
-  
-  Arguments:
-    -player_arrows: a list of arrows the player must hit
-    -arrows_on screen: a list of arrows currently on the screen
+    """
+    This function produces arrows on the arrow's side based off the pattern
+    of arrows that the computer sides function.
 
-  Returns:
-    -player_arrows: a list of arrows the player must hit
-    -arrows_on screen: a list of arrows currently on the screen
-  """
-  if arrows_on_screen[0] == "up":
-    copy_arrow = PlayerArrow("up")
-    copy_arrow.position()
-    player_arrows[0].append(copy_arrow)
+    Arguments:
+        -player_arrows: a list of arrows the player must hit
+        -arrows_on screen: a list of arrows currently on the screen
 
-  elif arrows_on_screen[0] == "left":
-    copy_arrow = PlayerArrow("left")
-    copy_arrow.position()
-    player_arrows[1].append(copy_arrow)
+    Returns:
+        -player_arrows: a list of arrows the player must hit
+        -arrows_on screen: a list of arrows currently on the screen
+    """
+    if arrows_on_screen[0] == "up":
+        copy_arrow = PlayerArrow("up")
+        copy_arrow.position()
+        player_arrows[0].append(copy_arrow)
 
-  elif arrows_on_screen[0] == "right":
-    copy_arrow = PlayerArrow("right")
-    copy_arrow.position()
-    player_arrows[2].append(copy_arrow)
+    elif arrows_on_screen[0] == "left":
+        copy_arrow = PlayerArrow("left")
+        copy_arrow.position()
+        player_arrows[1].append(copy_arrow)
 
-  elif arrows_on_screen[0] == "down":
-    copy_arrow = PlayerArrow("down")
-    copy_arrow.position()
-    player_arrows[3].append(copy_arrow)
+    elif arrows_on_screen[0] == "right":
+        copy_arrow = PlayerArrow("right")
+        copy_arrow.position()
+        player_arrows[2].append(copy_arrow)
 
-    return player_arrows, arrows_on_screen 
+    elif arrows_on_screen[0] == "down":
+        copy_arrow = PlayerArrow("down")
+        copy_arrow.position()
+        player_arrows[3].append(copy_arrow)
+
+    return player_arrows, arrows_on_screen
