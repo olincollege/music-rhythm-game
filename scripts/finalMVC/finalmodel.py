@@ -11,6 +11,7 @@ those
 # pylint: disable=invalid-name
 
 import pygame
+import random
 from finalview import *
 from finalcontroller import *
 pygame.init()
@@ -80,6 +81,7 @@ class Game():
         Stops the music upon exit to avoid layering of soundtracks.
         """
         self.channel.stop()
+
 
 class Arrow(pg.sprite.Sprite):
     """
@@ -194,6 +196,7 @@ class Arrow(pg.sprite.Sprite):
         """
         return f"{self._direction}"
 
+
 class PlayerArrow(Arrow):
     """
     A subclass of the Arrow class that initializes arrows on the "player"
@@ -226,6 +229,7 @@ class PlayerArrow(Arrow):
         Returns a string that indicates to a user which class arrow it is.
         """
         return "player"
+
 
 class ComputerArrow(Arrow):
     """

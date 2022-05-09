@@ -31,6 +31,7 @@ class Background(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
+
 class Menu():
     """
     A menu interface scene for catJAM
@@ -89,6 +90,7 @@ class Menu():
         """
         self.channel.stop()
 
+
 class Exit():
     """
     A menu interface scene for catJAM
@@ -145,6 +147,7 @@ class Exit():
         Stops the music upon exit to avoid layering of soundtracks.
         """
         self.channel.stop()
+
 
 class Cat(pg.sprite.Sprite):
     """
