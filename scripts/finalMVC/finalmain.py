@@ -9,7 +9,8 @@ WIDTH, HEIGHT = 1280, 720
 BPM = 100  # tempo of the song
 # DELAY = 3.59
 # DELAY = 3.74
-DELAY = 3.44 # Changes based on arrow speed.
+# DELAY = 3.44 # Changes based on arrow speed.
+DELAY = 3
 
 # screen size
 size = (WIDTH, HEIGHT)
@@ -70,6 +71,8 @@ drum_cat = Cat("drum", 850, 225)
 piano_cat_2 = Cat("piano", -50, 300, True)
 guitar_cat_2 = Cat("guitar", 205, 350, True)
 drum_cat_2 = Cat("drum", 77, 225, True)
+
+
 # lists to keep track of arrows on screen
 
 up_arrows = []
@@ -109,7 +112,12 @@ next_notes = melody_arrow_generator(BPM, song_information)
 # print(next_notes)
 next_note = next_notes[0]
 melody = 0
+
+
+    
 while True:
+    # if scene == scenes["game"]:
+        
 
     # if game_timer % length == True:
     #     pg.time.set_timer(add_arrow, length)
@@ -117,6 +125,7 @@ while True:
     print (f"game timer {game_timer}")
 
     if scene == scenes["game"]:
+ 
         if deletion == 1:
             # print(f"game timer before{game_timer}")
             game_timer -= 0.09
@@ -221,6 +230,15 @@ while True:
 
     # display the arrows at the top of the screen if not in menu
     if scene == scenes["game"]:
+        dj_cat.display(screen)
+        drum_cat.display(screen)
+        piano_cat.display(screen)
+        speaker_cat.display(screen)
+        guitar_cat.display(screen)
+        drum_cat_2.display(screen)
+        piano_cat_2.display(screen)
+        guitar_cat_2.display(screen)
+        
         # new_computer_arrows = [[], [], [], []]
         # new_player_arrows = [[], [], [], []]
           # display moving arrows if not in menu scene
@@ -243,16 +261,7 @@ while True:
         p_down.display_arrow(screen)
         p_up.display_arrow(screen)
         p_right.display_arrow(screen)
-        # dj_cat.display(screen)
-        
-        # drum_cat.display(screen)
-        # piano_cat.display(screen)
-        # speaker_cat.display(screen)
-        # guitar_cat.display(screen)
-
-        # drum_cat_2.display(screen)
-        # piano_cat_2.display(screen)
-        # guitar_cat_2.display(screen)
+       
     
 #potential off screen delete solution
     for arrow in computer_arrows + player_arrows[0] + player_arrows[1] + \

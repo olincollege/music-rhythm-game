@@ -104,6 +104,7 @@ class Exit():
                     image
 
     """
+  
     def __init__(self, screen, scenes):
         """
         Creates a new instance of Exit.
@@ -111,8 +112,9 @@ class Exit():
         self.scenes = scenes
         self.screen = screen
         self.music = pg.mixer.Sound("../assets/soundtrack/tutorial.wav")
+        self.font = pg.font.Font('Eczar-SemiBold.ttf', 40)
         self.channel = pg.mixer.Channel(0)
-        self.background = Background('../assets/imgs/menu.png', [0, 0])
+        self.background = Background("../assets/imgs/end screen.png", [0, 0])
 
     def start(self):
         """
@@ -122,7 +124,7 @@ class Exit():
         self.screen.blit(self.background.image, self.background.rect)
         self.channel.play(self.music, loops=-1, fade_ms=0)
 
-    def update(self, events, dt):
+    def update(self, events, total_score):
         """
         Updates the screen based on what events have occured.
 
@@ -139,7 +141,12 @@ class Exit():
         """
         for event in events:
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-                pass
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    exit()
+
+        text = self.font.render(str(total_score), True, (255, 16, 240))
+        self.screen.blit(text, (645,610))
         return self
 
     def exit(self):
