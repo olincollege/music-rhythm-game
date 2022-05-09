@@ -1,7 +1,10 @@
 """
 -Game Class: put here cuz tis the game duh lmao
 """
-
+import pygame
+from finalview import *
+from finalcontroller import *
+pygame.init()
 
 class Game():
     """

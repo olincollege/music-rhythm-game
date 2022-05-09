@@ -187,11 +187,18 @@ class ComputerArrow(Arrow):
         return "computer"
 
 
-def computer_produce_arrow():
+def computer_produce_arrow(computer_arrows, arrows_on_screen):
     """
     A function that produces a random arrow when called and adds the
     directional arrow to a corresponding list. This function is specifically
     used to produce arrows on the computer's side.
+
+    Arguments:
+        -computer_arrows: a list of arrows the computer produces
+        -arrows_on screen: a list of arrows currently on the screen
+    Returns:
+        -computer_arrows: a list of arrows the computer produces
+        -arrows_on screen: a list of arrows currently on the screen
     """
     arrows = ["up", "left", "right", "down"]
 
@@ -204,10 +211,20 @@ def computer_produce_arrow():
   
     arrows_on_screen.append(random_arrow)
 
-def player_produce_arrow():
+    return computer_arrows, arrows_on_screen
+
+def player_produce_arrow(player_arrows, arrows_on_screen):
   """
   This function produces arrows on the arrow's side based off the pattern
   of arrows that the computer sides function.
+  
+  Arguments:
+    -player_arrows: a list of arrows the player must hit
+    -arrows_on screen: a list of arrows currently on the screen
+
+  Returns:
+    -player_arrows: a list of arrows the player must hit
+    -arrows_on screen: a list of arrows currently on the screen
   """
   if arrows_on_screen[0] == "up":
     copy_arrow = PlayerArrow("up")
@@ -228,3 +245,5 @@ def player_produce_arrow():
     copy_arrow = PlayerArrow("down")
     copy_arrow.position()
     player_arrows[3].append(copy_arrow)
+
+    return player_arrows, arrows_on_screen 
