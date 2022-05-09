@@ -269,11 +269,11 @@ def melody_arrow_generator(BPM, song_info):
         if note == 4:
             quarter_note_length = quarter_note_length - 48
         if note == 2:
-            quarter_note_length = quarter_note_length - 60
+            quarter_note_length = quarter_note_length - 24
         if note == 1:
             quarter_note_length = quarter_note_length - 13
         if note == 0.5:
-            quarter_note_length = quarter_note_length - 50
+            quarter_note_length = quarter_note_length - 24
         if note == 0.25:
             quarter_note_length = quarter_note_length - 70
 
@@ -297,29 +297,31 @@ def computer_produce_arrow():
     arrows_on_screen.append(random_arrow)
 
 def player_produce_arrow():
-  """
-  This function produces arrows on the arrow's side based off the pattern
-  of arrows that the computer sides function.
-  """
-  if arrows_on_screen[0] == "up": 
-    copy_arrow = ar.PlayerArrow("up")
-    copy_arrow.position()
-    player_arrows[0].append(copy_arrow)
+    """
+    This function produces arrows on the arrow's side based off the pattern
+    of arrows that the computer sides function.
+    """
+    
+   
+    if arrows_on_screen[0] == "up": 
+        copy_arrow = ar.PlayerArrow("up")
+        copy_arrow.position()
+        player_arrows[0].append(copy_arrow)
 
-  elif arrows_on_screen[0] == "left":
-    copy_arrow = ar.PlayerArrow("left")
-    copy_arrow.position()
-    player_arrows[1].append(copy_arrow)
+    elif arrows_on_screen[0] == "left":
+        copy_arrow = ar.PlayerArrow("left")
+        copy_arrow.position()
+        player_arrows[1].append(copy_arrow)
 
-  elif arrows_on_screen[0] == "right":
-    copy_arrow = ar.PlayerArrow("right")
-    copy_arrow.position()
-    player_arrows[2].append(copy_arrow)
+    elif arrows_on_screen[0] == "right":
+        copy_arrow = ar.PlayerArrow("right")
+        copy_arrow.position()
+        player_arrows[2].append(copy_arrow)
 
-  elif arrows_on_screen[0] == "down":
-    copy_arrow = ar.PlayerArrow("down")
-    copy_arrow.position()
-    player_arrows[3].append(copy_arrow)
+    elif arrows_on_screen[0] == "down":
+        copy_arrow = ar.PlayerArrow("down")
+        copy_arrow.position()
+        player_arrows[3].append(copy_arrow)
     
 # screen size
 size = (WIDTH, HEIGHT)
@@ -388,19 +390,17 @@ right_arrows = []
 down_arrows = []
 
 song_information = [1, 1, 1, 1, 4,
-                    1, 1, 1, 1, 4,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
-                    0.5,
-                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5,
-                    0.5,
+                    1, 1, 1, 1, 3.75,
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+                    1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25,    
                     0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 1,
-                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 1,
+                    0.5, 0.5, 0.5, 0.5, 1, 2, 0.5, 0.5, 1, 0.75,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 0.85,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
-                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
+                    0.25, 0.25, 0.5, 0.5, 1, 1, 1, 0.85,
                                     ]
-num_notes = [5, 5, 14, 14,10,10,18,18]
+num_notes = [5, 5, 13, 12,9,9,17 ,17]
 # test_val = 1
 # song_information = [test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val]
 arrows_on_screen = []
@@ -431,7 +431,7 @@ while True:
     if scene == scenes["game"]:
         if deletion == 1:
             # print(f"game timer before{game_timer}")
-            game_timer -= 0.012
+            game_timer -= 0.008
             # print(f"game timer after{game_timer}")
             deletion = 0
 
@@ -439,7 +439,7 @@ while True:
         if game_timer > DELAY:
             if game_timer > next_note + saved_time and note_counter < len(next_notes):
                 pg.event.post(add_arrow_event)
-                print(f"post time added {game_timer - saved_time}")
+                # print(f"post time added {game_timer - saved_time}")
                 next_note = next_notes[note_counter]
                 saved_time = game_timer
                 # print(f"counter {counter}")
@@ -470,19 +470,29 @@ while True:
             exit()
 
         if event.type == add_arrow and game_timer > DELAY:
-            print(f"melody: {melody}")
-            print(f"counter: {melody_counter}")
+            # print(f"melody: {melody}")
+            # print(f"melody_counter: {melody_counter}")
             
+            # if the number of notes in this melody is greater than the number of notes for this melody
             if melody_counter > num_notes[melody]:
+                # go onto the next melody
                 melody += 1
+                # reset the counter
                 melody_counter = 0
                 
-            if melody_counter <= num_notes[melody]:
-                if melody % 2 == 0:
-                    computer_produce_arrow()
-                else:
+            # If the melody number is divisible by 2, that means it's the computer's turn
+            if melody % 2 == 0:
+                print("computer")
+                computer_produce_arrow()
+            else:
+                print("player")
+                try:
                     player_produce_arrow()
                     arrows_on_screen.pop(0)
+                except IndexError:
+                    print("back to the computer")
+                
+                
 
         #keybinds
         if event.type == pg.KEYDOWN:
