@@ -87,13 +87,9 @@ class Menu():
         """
         for event in events:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-<<<<<<< HEAD
                 return self.scenes['game']
         #self.screen.blit(self.background.image, self.background.rect)
         #self.screen.blit(self.font.render("Menu", True, 'white'), (WIDTH/2 - 20, 100))
-=======
-                return self.scenes['exit']
->>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
         return self
 
     def exit(self):
@@ -404,13 +400,9 @@ song_information = [1, 1, 1, 1, 4,
                     0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25,
                     0.25, 0.25, 0.5, 0.5, 1, 1, 1, 1,
                                     ]
-<<<<<<< HEAD
 num_notes = [5, 5, 14, 14,10,10,18,18]
 # test_val = 1
 # song_information = [test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val,test_val]
-=======
-num_notes = [5, 10, 24, 38,48,58,76,94]
->>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
 arrows_on_screen = []
 computer_arrows = []
 player_arrows = [[], [], [], []]
@@ -445,12 +437,7 @@ while True:
 
         # The intro before the game begins = DELAY
         if game_timer > DELAY:
-<<<<<<< HEAD
             if game_timer > next_note + saved_time and note_counter < len(next_notes):
-=======
-            if game_timer > next_note + saved_time and counter < len\
-                (next_notes):
->>>>>>> 2f7e7955ce3675b14fc5b9fc5813f75d13189075
                 pg.event.post(add_arrow_event)
                 print(f"post time added {game_timer - saved_time}")
                 next_note = next_notes[note_counter]
