@@ -21,7 +21,7 @@ At this point, you'll see a menu screen. Whenever you're ready, press **space!**
 The computer will play first, showing you what arrows are going to come for you. After 8 beats, it'll be your turn to showcase what you're capable of. 
 
 # Demo:
-
+[Here's a Demo of the game!](https://youtu.be/nYD9bt-oiCg)
 
 # Attributions
 Inspired by [**Friday Night Funkin**]( https://en.wikipedia.org/wiki/Friday_Night_Funkin%27) || Play [here]( https://friday-nightfunkin.io/)
